@@ -65,7 +65,7 @@ def index():
 
 if __name__ == '__main__':
   scheduler = APScheduler()
-  scheduler.add_job(func=reload, args=['job run'], trigger='interval', id='job', minutes=10)
+  scheduler.add_job(func=reload, args=['job run'], trigger='interval', id='job', seconds=30)
   scheduler.start()
 
   app.run(debug=True)	
