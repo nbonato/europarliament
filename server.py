@@ -3,11 +3,14 @@ import requests
 from bs4 import BeautifulSoup
 import pandas as pd
 import re
-from flask_apscheduler import APScheduler
-import datetime
+from apscheduler.schedulers.background import BackgroundScheduler
+
+
+
+
 
 def reload():
-	pages = 43 #this is hard-coded for now, but will be scraped as well in a future update
+	pages = 2 #this is hard-coded for now, but will be scraped as well in a future update
 	traineeships = pd.DataFrame()
 	offer = []
 	candidates = []
@@ -51,11 +54,16 @@ def reload():
 	traineeships = traineeships.sort_values('Candidati', ascending=False)
 
 	traineeships["link"] = "<a href=" + traineeships['link'].astype(str) + " target='_blank'>David, arrivo</a>"
-
+	print("Running it again")
 
 	#traineeships.to_excel('traineeships.ods', index=False, encoding='UTF-8')
 	traineeships.to_html('templates/traineeships.html', index=False, encoding='UTF-8', render_links=True, escape=False)
+reload()
 
+
+sched = BackgroundScheduler(daemon=True)
+sched.add_job(reload,'interval',seconds=20)
+sched.start()
 
 app = Flask(__name__)
 @app.route('/')
@@ -63,9 +71,7 @@ def index():
   return render_template('index.html')
 
 
-if __name__ == '__main__':
-  scheduler = APScheduler()
-  scheduler.add_job(func=reload, args=['job run'], trigger='interval', id='job', seconds=30)
-  scheduler.start()
 
-  app.run(debug=True)	
+if __name__ == '__main__':
+
+  app.run()	
