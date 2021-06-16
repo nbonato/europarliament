@@ -1,8 +1,8 @@
 import requests
 from bs4 import BeautifulSoup
 import pandas as pd
-
-pages = 42 #this is hard-coded for now, but will be scraped as well in a future update
+import re
+pages = 43 #this is hard-coded for now, but will be scraped as well in a future update
 traineeships = pd.DataFrame()
 offer = []
 candidates = []
@@ -40,9 +40,13 @@ for i in range(1, pages):
             link_offer.append(link.get("href"))
 
 
+traineeships['Posto'] = offer
+traineeships['Candidati'] = candidates
+traineeships['link'] = link_offer
+traineeships = traineeships.sort_values('Candidati', ascending=False)
 
-traineeships['offer'] = offer
-traineeships['candidates'] = candidates
-traineeships['link_offer'] = link_offer
+traineeships["link"] = "<a href=" + traineeships['link'].astype(str) + " target='_blank'>David, arrivo</a>"
 
-traineeships.to_excel('traineeships.ods', index=False, encoding='UTF-8')
+
+#traineeships.to_excel('traineeships.ods', index=False, encoding='UTF-8')
+traineeships.to_html('templates/traineeships.html', index=False, encoding='UTF-8', render_links=True, escape=False)

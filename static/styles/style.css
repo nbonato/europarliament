@@ -1,0 +1,45 @@
+* {
+  font-family: "Public Sans", sans-serif;
+  font-size: 1.05em
+}
+
+a {
+  font-weight: 900
+}
+
+table.dataframe {
+  font-family: "Public Sans", Gadget, sans-serif;
+  border: 2px solid #000000;
+  background-color: #ffffff;
+  width: 100%;
+  height: 200px;
+  text-align: center;
+  border-collapse: collapse;
+}
+table.dataframe td, table.dataframe th {
+  border: 1px solid #4A4A4A;
+  padding: 3px 2px;
+}
+table.dataframe tbody td {
+  color: #21262b;
+  font-weight: 400
+}
+
+
+table.dataframe tr:nth-child(even) {
+  background: #67aff0;
+}
+table.dataframe thead {
+  background: #0a4478;
+  border-bottom: 3px solid #000000;
+}
+table.dataframe thead th {
+  font-size: 1.5em;
+  font-weight: 900;
+  color: #ffffff;
+  text-align: center;
+  border-left: 2px solid #4A4A4A;
+}
+table.dataframe thead th:first-child {
+  border-left: none;
+}
