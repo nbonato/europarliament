@@ -3,7 +3,8 @@ import requests
 from bs4 import BeautifulSoup
 import pandas as pd
 import re
-
+from flask_apscheduler import APScheduler
+import datetime
 
 def reload():
 	pages = 43 #this is hard-coded for now, but will be scraped as well in a future update
@@ -59,10 +60,12 @@ def reload():
 app = Flask(__name__)
 @app.route('/')
 def index():
-  reload()
-
   return render_template('index.html')
 
 
 if __name__ == '__main__':
+  scheduler = APScheduler()
+  scheduler.add_job(func=reload, args=['job run'], trigger='interval', id='job', minutes=10)
+  scheduler.start()
+
   app.run(debug=True)	
