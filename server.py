@@ -10,7 +10,7 @@ from apscheduler.schedulers.background import BackgroundScheduler
 
 
 def reload():
-	pages = 2 #this is hard-coded for now, but will be scraped as well in a future update
+	pages = 1 #this is hard-coded for now, but will be scraped as well in a future update
 	traineeships = pd.DataFrame()
 	offer = []
 	candidates = []
@@ -18,7 +18,7 @@ def reload():
 
 
 	for i in range(1, pages):
-		url = "https://ep-stages.gestmax.eu/search/index/page/" + str(i)
+		url = "https://nbonato.github.io/my-site/"
 		response = requests.get(url)
 		html = response.text
 
