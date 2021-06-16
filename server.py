@@ -10,7 +10,7 @@ from apscheduler.schedulers.background import BackgroundScheduler
 
 
 def reload():
-	pages = 2 #this is hard-coded for now, but will be scraped as well in a future update
+	pages = 43 #this is hard-coded for now, but will be scraped as well in a future update
 	traineeships = pd.DataFrame()
 	offer = []
 	candidates = []
@@ -53,8 +53,8 @@ def reload():
 	traineeships['link'] = link_offer
 	traineeships = traineeships.sort_values('Candidati', ascending=False)
 
-	traineeships["link"] = "<a href=" + traineeships['link'].astype(str) + " target='_blank'>David, arrivo</a>"
-	print("Running it again")
+	traineeships["link"] = "<a href=" + traineeships['link'].astype(str) + " target='_blank'>Candidatura</a>"
+	
 
 	#traineeships.to_excel('traineeships.ods', index=False, encoding='UTF-8')
 	traineeships.to_html('templates/traineeships.html', index=False, encoding='UTF-8', render_links=True, escape=False)
@@ -62,7 +62,7 @@ reload()
 
 
 sched = BackgroundScheduler(daemon=True)
-sched.add_job(reload,'interval',seconds=20)
+sched.add_job(reload,'interval',minutes=20)
 sched.start()
 
 app = Flask(__name__)
