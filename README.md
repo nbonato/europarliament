@@ -1,5 +1,8 @@
 # europarliament
 
+## UPDATE 
+The script is now a Flask web app, the page for which is accessible here: http://eu-traineeships.herokuapp.com/ 
+The page may take a while to load on the first visit.
 
 ## What it does
 Script scraping the [gestmax.eu](ep-stages.gestmax.eu) website listing available traineeships at the European parliament and the number of candidates.
