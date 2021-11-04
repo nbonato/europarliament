@@ -10,7 +10,7 @@ from apscheduler.schedulers.background import BackgroundScheduler
 
 
 def reload():
-	pages = 43 #this is hard-coded for now, but will be scraped as well in a future update
+	pages = 45 #this is hard-coded for now, but will be scraped as well in a future update
 	traineeships = pd.DataFrame()
 	offer = []
 	candidates = []
