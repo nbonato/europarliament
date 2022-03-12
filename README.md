@@ -5,7 +5,7 @@ The script is now a Flask web app, the page for which is accessible here: http:/
 The page may take a while to load on the first visit.
 
 ## The page is empty
-Most of the time, the page will be empty, with just the table's header showing. This is because the EU parliament only publishe traineehsips two months per year. Currently, since this website has limited usage, I did not create a backup plan of sort for when it is empty, but that is in the cards for the future.
+Most of the time, the page will be empty, with just the table's header showing. This is because the EU parliament only publishes traineehsips two months per year. Currently, since this website has limited usage, I did not create a backup plan of sort for when it is empty, but that is in the cards for the future.
 
 ## What it does
 Script scraping the [gestmax.eu](ep-stages.gestmax.eu) website listing available traineeships at the European parliament and the number of candidates.
