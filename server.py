@@ -34,7 +34,9 @@ def reload():
 					candidates.append(0)
 				else:
 					candidates.append(int(text2))
-
+		check = soup.findAll("h2")
+		for text in check:
+			print(text)
 		links = soup.findAll("h3")  # use a instead of h3 for links
 		for link in links:
 			if str(link.get("class")) == "['list-group-item-heading']":
