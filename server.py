@@ -10,6 +10,7 @@ from apscheduler.schedulers.background import BackgroundScheduler
 stopper = 0
 
 def reload():
+	stopper = 0
 	pages = 45 #this is hard-coded for now, but will be scraped as well in a future update
 	traineeships = pd.DataFrame()
 	offer = []
@@ -75,7 +76,7 @@ def index():
 	if stopper == 0:
 		return render_template('index.html')
 	elif stopper == 1:
-		return render_template('https://github.com/nbonato/europarliament/blob/0c89987bb00e7d416f798a7a51a98973bff570a2/templates/index.html')
+		return render_template('unavailable.html')
 
 
 if __name__ == '__main__':
