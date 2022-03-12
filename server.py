@@ -7,7 +7,7 @@ from apscheduler.schedulers.background import BackgroundScheduler
 
 
 
-
+stopper = 0
 
 def reload():
 	pages = 45 #this is hard-coded for now, but will be scraped as well in a future update
@@ -36,7 +36,8 @@ def reload():
 					candidates.append(int(text2))
 		check = soup.findAll("h2")
 		for text in check:
-			print(text)
+			if text == "<h2>0 available traineeship</h2>":
+				stopper = 1
 		links = soup.findAll("h3")  # use a instead of h3 for links
 		for link in links:
 			if str(link.get("class")) == "['list-group-item-heading']":
@@ -67,11 +68,14 @@ sched = BackgroundScheduler(daemon=True)
 sched.add_job(reload,'interval',minutes=20)
 sched.start()
 
+
 app = Flask(__name__)
 @app.route('/')
 def index():
-  return render_template('index.html')
-
+	if stopper == 0:
+		return render_template('index.html')
+	elif stopper == 1:
+		return render_template('https://github.com/nbonato/europarliament/blob/0c89987bb00e7d416f798a7a51a98973bff570a2/templates/index.html')
 
 
 if __name__ == '__main__':
